@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How Do We Love — Projects — Kyle Vang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0e0d0c;
+    --bg-alt: #151311;
+    --surface: #1b1815;
+    --border: #2d2822;
+    --text: #f4efe6;
+    --text-dim: #a89f92;
+    --text-faint: #6b6459;
+    --accent: #ff6a3d;
+    --accent-2: #ffcf6b;
+    --accent-grad: linear-gradient(135deg, #ff6a3d 0%, #ffcf6b 100%);
+    --radius: 18px;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior: smooth; }
+  body{ background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; overflow-x: hidden; }
+  body::before{
+    content:''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.6;
+  }
+  .glow{
+    position: fixed; top: -25%; left: 50%; transform: translateX(-50%);
+    width: 1000px; height: 750px;
+    background: radial-gradient(circle, rgba(255,106,61,0.14) 0%, rgba(255,207,107,0.05) 40%, transparent 70%);
+    filter: blur(70px); pointer-events: none; z-index: 0;
+  }
+  .wrap{ max-width: 880px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+  a{ color: inherit; text-decoration: none; }
+  .kicker{ font-size: 13px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); font-weight: 600; margin-bottom: 14px; }
+
+  nav{ position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px); background: rgba(14,13,12,0.72); border-bottom: 1px solid var(--border); }
+  nav .wrap{ max-width: 1180px; display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .logo{ font-family: var(--serif); font-weight: 500; font-size: 19px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
+  .logo .dot{ width: 8px; height: 8px; border-radius: 50%; background: var(--accent-grad); box-shadow: 0 0 12px rgba(255,106,61,0.7); }
+  .back-link{ font-size: 14px; color: var(--text-dim); display: flex; align-items: center; gap: 8px; transition: color .2s ease; }
+  .back-link:hover{ color: var(--accent); }
+
+  /* ---------- Case hero ---------- */
+  .case-hero{ padding: 90px 0 60px; }
+  .case-hero h1{ font-family: var(--serif); font-weight: 500; font-size: clamp(38px, 6vw, 64px); letter-spacing: -0.02em; line-height: 1.05; max-width: 760px; }
+  .case-hero .sub{ margin-top: 24px; font-size: 18px; color: var(--text-dim); max-width: 620px; }
+  .meta-row{ display: flex; gap: 40px; flex-wrap: wrap; margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .meta-item h4{ font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-faint); margin-bottom: 8px; }
+  .meta-item p{ font-size: 15px; font-weight: 500; }
+  .meta-tags{ display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag-pill{ font-size: 11px; text-transform: uppercase; letter-spacing: .06em; padding: 5px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--text-dim); }
+
+  .hero-image{ margin: 56px 0 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 30px 70px rgba(0,0,0,0.5); }
+  .hero-image img{ width: 100%; display: block; }
+
+  /* ---------- Content sections ---------- */
+  section.case-section{ padding: 64px 0; border-top: 1px solid var(--border); }
+  section.case-section:first-of-type{ border-top: none; }
+  .case-section .num{ font-family: var(--serif); font-style: italic; color: var(--text-faint); font-size: 20px; margin-bottom: 14px; display: block; }
+  .case-section h2{ font-family: var(--serif); font-weight: 500; font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -0.01em; margin-bottom: 20px; max-width: 640px; }
+  .case-section p{ color: var(--text-dim); font-size: 16px; max-width: 640px; }
+  .case-section p + p{ margin-top: 16px; }
+  .section-image{ margin-top: 36px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
+  .section-image img{ width: 100%; display: block; transition: transform .35s ease; cursor: zoom-in; }
+  .section-image:hover img{ transform: scale(1.05); }
+
+  /* ---------- Lightbox ---------- */
+  .lightbox{
+    position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center;
+    padding: 40px; background: rgba(10,9,8,0.9); backdrop-filter: blur(6px);
+    opacity: 0; pointer-events: none; transition: opacity .25s ease;
+  }
+  .lightbox.show{ opacity: 1; pointer-events: auto; }
+  .lightbox img{
+    max-width: 100%; max-height: 100%; border-radius: 12px; box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    transform: scale(.96); transition: transform .25s ease;
+  }
+  .lightbox.show img{ transform: scale(1); }
+  .lightbox-close{
+    position: absolute; top: 28px; right: 32px; width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
+    font-size: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: all .2s ease;
+  }
+  .lightbox-close:hover{ border-color: var(--accent); color: var(--accent); }
+  .section-image figcaption{ font-size: 13px; color: var(--text-faint); padding: 14px 20px; background: var(--surface); border-top: 1px solid var(--border); }
+  .image-pair{ display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .image-pair .section-image{ margin-top: 0; }
+  .image-trio{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px; }
+  .image-trio .section-image{ margin-top: 0; }
+  .image-trio .section-image img{ background: #fff; }
+  @media (max-width: 640px){ .image-pair{ grid-template-columns: 1fr; } .image-trio{ grid-template-columns: 1fr; } }
+  @media (min-width: 641px) and (max-width: 900px){ .image-trio{ grid-template-columns: 1fr 1fr; } }
+
+  /* ---------- CTA ---------- */
+  .case-cta{
+    margin: 40px 0 100px; padding: 64px 48px; text-align: center;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 24px; position: relative; overflow: hidden;
+  }
+  .case-cta::before{ content:''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(255,106,61,0.12), transparent 60%); pointer-events: none; }
+  .case-cta h2{ font-family: var(--serif); font-weight: 500; font-size: clamp(26px, 4.4vw, 38px); margin-bottom: 28px; position: relative; }
+  .cta-actions{ display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .btn{ display: inline-flex; align-items: center; gap: 8px; padding: 15px 28px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s ease; }
+  .btn-primary{ background: var(--accent-grad); color: #16110b; }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,106,61,0.28); }
+  .btn-ghost{ border: 1px solid var(--border); color: var(--text); }
+  .btn-ghost:hover{ border-color: var(--text-dim); transform: translateY(-2px); }
+
+  footer.site-footer{ padding: 40px 0 60px; text-align: center; color: var(--text-faint); font-size: 13px; }
+
+  @media (max-width: 640px){
+    .case-cta{ padding: 48px 24px; }
+    .meta-row{ gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="logo"><span class="dot"></span>Kyle Vang</a>
+    <a href="index.html#work" class="back-link">← Back to all work</a>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="wrap">
+    <div class="kicker">Projects</div>
+    <h1>How Do We Love — designing love as civic infrastructure</h1>
+    <p class="sub">A speculative look at Wisconsin in 2046, where Cupid on Earth (C.O.E.) is a public program responsible for the upkeep of relational infrastructure — from neighborhood care networks to planetary stewardship — anchored by Cubot, a small companion built to notice what people need before they ask.</p>
+
+    <div class="meta-row">
+      <div class="meta-item"><h4>Role</h4><p>UX/UI Designer &amp; Speculative Design Researcher</p></div>
+      <div class="meta-item"><h4>Context</h4><p>MDI Capstone, June 2026–August 2026</p></div>
+      <div class="meta-item"><h4>Focus</h4>
+        <div class="meta-tags">
+          <span class="tag-pill">Speculative Design</span>
+          <span class="tag-pill">Product</span>
+          <span class="tag-pill">Branding</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="love-cover.png" alt="C.O.E. website showing the Meet Cubot page in a browser mockup" />
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="case-section">
+    <span class="num">Overview</span>
+    <h2>What if love had infrastructure?</h2>
+    <p>How Do We Love started as an open-ended provocation in my MDI capstone: if love built the world, what would we actually build? That question turned into Cupid on Earth (C.O.E.) — a public program that reframes Cupid from a matchmaker into the agency responsible for the upkeep of relational infrastructure across Wisconsin, by 2046.</p>
+    <p>Cupid on Earth isn't a dating app. It's civic infrastructure — kitchens, transit, healthcare, grief spaces, repair cafés, water stewardship — all designed around a single belief: love isn't just a feeling, it's something a community can build, maintain, and repair.</p>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Concept</span>
+    <h2>Building the world of C.O.E.</h2>
+    <p>Before any screen was designed, I built the world C.O.E. would live in — a public-agency identity that feels closer to a parks department or a transit authority than a tech startup. The mark pairs a rounded, friendly wordmark with a deep evergreen, sage, cream, dusty rose, and teal palette pulled straight from the illustrated Wisconsin settings the program serves.</p>
+    <div class="image-pair">
+      <figure class="section-image">
+        <img src="love-brand-park.png" alt="C.O.E. logo and color palette over an illustration of a community park" />
+        <figcaption>The C.O.E. mark and palette, grounded in an illustrated community park.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="love-brand-capitol.png" alt="C.O.E. logo and color palette over an illustration of the Wisconsin State Capitol" />
+        <figcaption>The same system applied against the Capitol — a civic identity, not a corporate one.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Phase 01</span>
+    <h2>Mapping what love could mean.</h2>
+    <p>Research started as a sprawling mind-map: love as translation, love across time and distance, love as civic infrastructure, love beyond the human. Sticky notes fanned out into "what if" prompts — a lexicon of love, a map of future love, a city of unsaid love — until four categories kept surfacing as the ones worth building around: primary infrastructure, care technologies, repair &amp; restoration, and planetary love.</p>
+    <div class="image-pair">
+      <figure class="section-image">
+        <img src="love-mindmap.jpg" alt="Digital mind map branching from the question how do we love into four categories of ideas" />
+        <figcaption>Branching from "how do we love?" into the four systems that became C.O.E.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="love-vision-slide.jpg" alt="Slide titled Imagining Collective Futures asking what we would actually build if love built the world" />
+        <figcaption>The provocation that anchored the whole project: if love built the world, what would we build?</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Phase 02</span>
+    <h2>Meet Cubot, the first of many.</h2>
+    <p>Cupid used to have one job: matchmaking. By 2046, Cupid looks after every kind of love — between neighbors, strangers, cities, even the planet itself. Cubot is the first of many: a small companion built to notice what people need before they ask, whether that's helping someone down the stairs, picking up trash, or keeping someone warm who's stuck out in the cold.</p>
+    <p>Cubot went through dozens of hand-drawn iterations — Ropid, Curo, Cupid 5000 — before landing on a simple metallic cube with a heart-tipped propeller, designed to feel like a gentle utility object rather than a mascot.</p>
+    <div class="image-pair">
+      <figure class="section-image">
+        <img src="love-cubot-sketches-cover.jpg" alt="Sketchbook cover slide reading Sketches for Cubot, early designs and versions" />
+        <figcaption>Early designs and versions, before Cubot found its final form.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="love-cubot-reference-sheet.jpeg" alt="Cubot character reference sheet showing front, side, and back views plus an expression gallery" />
+        <figcaption>The final character reference sheet — views, expressions, and color specs.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Wireframes</span>
+    <h2>Structuring the experience.</h2>
+    <p>With the world and its companion defined, I moved into low-fidelity wireframes to lock the site's structure before touching visual design — a scrolling home page introducing the four systems, and dedicated system pages built around alternating image-and-text rows.</p>
+    <div class="image-pair">
+      <figure class="section-image">
+        <img src="love-wireframe-home.png" alt="Low-fidelity wireframe of the C.O.E. home page with a demo video placeholder and four system cards" />
+        <figcaption>Wireframing the home page: demo video, intro, and the four systems.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="love-wireframe-primary.png" alt="Wireframe of the Primary Infrastructure page with full body copy already drafted" />
+        <figcaption>Drafting real copy directly into the system-page wireframes.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Refinement</span>
+    <h2>Four systems, one belief.</h2>
+    <p>Love isn't just a feeling — it's infrastructure. Each of the four systems got its own page: Primary Infrastructure covers food, transit, health, and learning; Care Technologies covers pause, connection, and gentle safety; Repair &amp; Restoration covers sharing, mending, and repair; Planetary Love covers restoration and protection of water, plants, animals, and living systems.</p>
+    <div class="image-pair">
+      <figure class="section-image">
+        <img src="love-system-primary-infrastructure.png" alt="Primary Infrastructure page covering community kitchens, public transit, universal healthcare, and education" />
+        <figcaption>Primary Infrastructure — making love practical, visible, and shared in daily life.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="love-system-care-technology.png" alt="Care Technology page covering care checkpoints, care messengers, and gentle safety tech" />
+        <figcaption>Care Technology — making love closer and easier to share day to day.</figcaption>
+      </figure>
+    </div>
+    <div class="image-pair" style="margin-top:24px;">
+      <figure class="section-image">
+        <img src="love-system-repair-restoration.png" alt="Repair and Restoration page covering public grief spaces, repair cafes, and contemplative paths" />
+        <figcaption>Repair &amp; Restoration — reconnecting people with what they've lost and carry.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="love-system-planetary-love.png" alt="Planetary Love page covering water care stations, pollinator networks, and regenerative buildings" />
+        <figcaption>Planetary Love — reconnecting communities to water, plants, and living systems.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Results</span>
+    <h2>From speculative fiction to a working prototype.</h2>
+    <p>The capstone came together as a fully clickable Figma prototype spanning all four systems and the Cubot character page — presented as a piece of speculative fiction grounded in real, buildable civic ideas, and stress-tested across desktop, laptop, and mobile framing.</p>
+    <div class="image-trio">
+      <figure class="section-image">
+        <img src="love-mockup-overlap.png" alt="Overlapping browser screenshots of the Care Technology and home pages on a gradient background" />
+        <figcaption>Care Technology and the home page, side by side.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="love-mockup-laptop.png" alt="Laptop mockup showing the Repair and Restoration page" />
+        <figcaption>Repair &amp; Restoration, framed on laptop.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="love-mockup-desktop.png" alt="iMac mockup showing the Primary Infrastructure page" />
+        <figcaption>Primary Infrastructure, framed on desktop.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="case-cta">
+    <h2>See it in action.</h2>
+    <div class="cta-actions">
+      <a href="index.html#work" class="btn btn-ghost">← Back to all work</a>
+      <a href="https://www.figma.com/proto/KY61yEodhzj1YNrrgLLj4F/Cupid-on-Earth?node-id=67-108&p=f&t=qsK2EnwIg7tqclrC-1&scaling=min-zoom&content-scaling=fixed&page-id=67%3A107&starting-point-node-id=67%3A108&show-proto-sidebar=1" target="_blank" rel="noopener" class="btn btn-primary">Try the interactive prototype →</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">© 2026 Kyle Vang. Designed &amp; built by hand.</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  <img id="lightboxImg" src="" alt="" />
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  document.querySelectorAll('.section-image img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('show');
+    });
+  });
+
+  function closeLightbox(){
+    lightbox.classList.remove('show');
+  }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => {
+    if(e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') closeLightbox();
+  });
+</script>
+
+</body>
+</html>
