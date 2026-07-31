@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Imagin8V Park — Projects — Kyle Vang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0e0d0c;
+    --bg-alt: #151311;
+    --surface: #1b1815;
+    --border: #2d2822;
+    --text: #f4efe6;
+    --text-dim: #a89f92;
+    --text-faint: #6b6459;
+    --accent: #ff6a3d;
+    --accent-2: #ffcf6b;
+    --accent-grad: linear-gradient(135deg, #ff6a3d 0%, #ffcf6b 100%);
+    --radius: 18px;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior: smooth; }
+  body{ background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; overflow-x: hidden; }
+  body::before{
+    content:''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.6;
+  }
+  .glow{
+    position: fixed; top: -25%; left: 50%; transform: translateX(-50%);
+    width: 1000px; height: 750px;
+    background: radial-gradient(circle, rgba(255,106,61,0.14) 0%, rgba(255,207,107,0.05) 40%, transparent 70%);
+    filter: blur(70px); pointer-events: none; z-index: 0;
+  }
+  .wrap{ max-width: 880px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+  a{ color: inherit; text-decoration: none; }
+  .kicker{ font-size: 13px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); font-weight: 600; margin-bottom: 14px; }
+
+  nav{ position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px); background: rgba(14,13,12,0.72); border-bottom: 1px solid var(--border); }
+  nav .wrap{ max-width: 1180px; display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .logo{ font-family: var(--serif); font-weight: 500; font-size: 19px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
+  .logo .dot{ width: 8px; height: 8px; border-radius: 50%; background: var(--accent-grad); box-shadow: 0 0 12px rgba(255,106,61,0.7); }
+  .back-link{ font-size: 14px; color: var(--text-dim); display: flex; align-items: center; gap: 8px; transition: color .2s ease; }
+  .back-link:hover{ color: var(--accent); }
+
+  /* ---------- Case hero ---------- */
+  .case-hero{ padding: 90px 0 60px; }
+  .case-hero h1{ font-family: var(--serif); font-weight: 500; font-size: clamp(38px, 6vw, 64px); letter-spacing: -0.02em; line-height: 1.05; max-width: 760px; }
+  .case-hero .sub{ margin-top: 24px; font-size: 18px; color: var(--text-dim); max-width: 620px; }
+  .meta-row{ display: flex; gap: 40px; flex-wrap: wrap; margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .meta-item h4{ font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-faint); margin-bottom: 8px; }
+  .meta-item p{ font-size: 15px; font-weight: 500; }
+  .meta-tags{ display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag-pill{ font-size: 11px; text-transform: uppercase; letter-spacing: .06em; padding: 5px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--text-dim); }
+
+  .hero-image{ margin: 56px 0 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 30px 70px rgba(0,0,0,0.5); }
+  .hero-image img{ width: 100%; display: block; }
+
+  /* ---------- Content sections ---------- */
+  section.case-section{ padding: 64px 0; border-top: 1px solid var(--border); }
+  section.case-section:first-of-type{ border-top: none; }
+  .case-section .num{ font-family: var(--serif); font-style: italic; color: var(--text-faint); font-size: 20px; margin-bottom: 14px; display: block; }
+  .case-section h2{ font-family: var(--serif); font-weight: 500; font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -0.01em; margin-bottom: 20px; max-width: 640px; }
+  .case-section p{ color: var(--text-dim); font-size: 16px; max-width: 640px; }
+  .case-section p + p{ margin-top: 16px; }
+  .section-image{ margin-top: 36px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
+  .section-image img{ width: 100%; display: block; transition: transform .35s ease; cursor: zoom-in; }
+  .section-image:hover img{ transform: scale(1.05); }
+
+  /* ---------- Lightbox ---------- */
+  .lightbox{
+    position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center;
+    padding: 40px; background: rgba(10,9,8,0.9); backdrop-filter: blur(6px);
+    opacity: 0; pointer-events: none; transition: opacity .25s ease;
+  }
+  .lightbox.show{ opacity: 1; pointer-events: auto; }
+  .lightbox img{
+    max-width: 100%; max-height: 100%; border-radius: 12px; box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    transform: scale(.96); transition: transform .25s ease;
+  }
+  .lightbox.show img{ transform: scale(1); }
+  .lightbox-close{
+    position: absolute; top: 28px; right: 32px; width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
+    font-size: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: all .2s ease;
+  }
+  .lightbox-close:hover{ border-color: var(--accent); color: var(--accent); }
+  .section-image figcaption{ font-size: 13px; color: var(--text-faint); padding: 14px 20px; background: var(--surface); border-top: 1px solid var(--border); }
+  .image-pair{ display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .image-pair .section-image{ margin-top: 0; }
+  .image-trio{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px; }
+  .image-trio .section-image{ margin-top: 0; }
+  .image-trio .section-image img{ background: #fff; }
+  @media (max-width: 640px){ .image-pair{ grid-template-columns: 1fr; } .image-trio{ grid-template-columns: 1fr; } }
+  @media (min-width: 641px) and (max-width: 900px){ .image-trio{ grid-template-columns: 1fr 1fr; } }
+
+  /* ---------- CTA ---------- */
+  .case-cta{
+    margin: 40px 0 100px; padding: 64px 48px; text-align: center;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 24px; position: relative; overflow: hidden;
+  }
+  .case-cta::before{ content:''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(255,106,61,0.12), transparent 60%); pointer-events: none; }
+  .case-cta h2{ font-family: var(--serif); font-weight: 500; font-size: clamp(26px, 4.4vw, 38px); margin-bottom: 28px; position: relative; }
+  .cta-actions{ display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .btn{ display: inline-flex; align-items: center; gap: 8px; padding: 15px 28px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s ease; }
+  .btn-primary{ background: var(--accent-grad); color: #16110b; }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,106,61,0.28); }
+  .btn-ghost{ border: 1px solid var(--border); color: var(--text); }
+  .btn-ghost:hover{ border-color: var(--text-dim); transform: translateY(-2px); }
+
+  footer.site-footer{ padding: 40px 0 60px; text-align: center; color: var(--text-faint); font-size: 13px; }
+
+  @media (max-width: 640px){
+    .case-cta{ padding: 48px 24px; }
+    .meta-row{ gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="logo"><span class="dot"></span>Kyle Vang</a>
+    <a href="index.html#work" class="back-link">← Back to all work</a>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="wrap">
+    <div class="kicker">Projects</div>
+    <h1>Imagin8V Park — making the housing crisis visible</h1>
+    <p class="sub">An interactive platform born from stakeholder conversations in my grad program, turning the unseen stories behind community-led housing and civic action into an explorable game.</p>
+
+    <div class="meta-row">
+      <div class="meta-item"><h4>Role</h4><p>UX Researcher &amp; Product Designer</p></div>
+      <div class="meta-item"><h4>Context</h4><p>Graduate Capstone, January 2026–May 2026</p></div>
+      <div class="meta-item"><h4>Focus</h4>
+        <div class="meta-tags">
+          <span class="tag-pill">Research</span>
+          <span class="tag-pill">Product</span>
+          <span class="tag-pill">Game Design</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="work-imagin8v.jpg" alt="Imagin8V Park title screen" />
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="case-section">
+    <span class="num">Overview</span>
+    <h2>Making unseen stories visible.</h2>
+    <p>Imagin8V Park is a project that grew out of conversations with our stakeholders and grad program about the housing crisis in Wisconsin.</p>
+    <p>We realized that the stories behind community-led housing and civic action are often unseen. Imagin8V Park aims to make these stories visible via an interactive platform — highlighting how education, participation, and shared spaces shape stronger, more stable communities amid an ongoing housing crisis.</p>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Context</span>
+    <h2>Grounded in real relationships.</h2>
+    <p>Community trust doesn't come from a single meeting — it's built through iteration. Over the course of this project, we ran repeated feedback loops with residents, refining our approach each time we learned something new.</p>
+    <p>That groundwork became Adams Garden Park, a space shaped as much by the people who'd use it as by the people who designed it.</p>
+    <figure class="section-image">
+      <img src="imagin8v-stakeholders.jpg" alt="Our stakeholders: Sharon and Larry Adams of Adams Garden Park" />
+      <figcaption>Sharon and Larry Adams, whose work with Adams Garden Park grounded this project in a real community.</figcaption>
+    </figure>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Phase 01</span>
+    <h2>Research &amp; discovery.</h2>
+    <p>In the first phase of our project, our team conducted extensive research to better understand the potential impact of the game, identify user needs, and generate ideas through collaborative brainstorming sessions.</p>
+    <div class="image-trio">
+      <figure class="section-image">
+        <img src="imagin8v-problem.jpg" alt="Problem slide: the housing crisis is hard for younger generations to access or engage with" />
+        <figcaption>Naming the problem — the housing crisis felt invisible and out of reach.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="imagin8v-research.jpg" alt="Research slide showing digital education games improve student learning engagement" />
+        <figcaption>Research validated that a game could bridge imagination and action.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="imagin8v-reframing.jpg" alt="Reframing the problem into the question: how might we give high schoolers a meaningful entry point into community transformation" />
+        <figcaption>Reframing the problem around high schoolers, not just policy.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="imagin8v-audience.jpg" alt="Target audience slide identifying high school students and the zone of opportunity" />
+        <figcaption>Defining the target audience and our zone of opportunity.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="imagin8v-solution.jpg" alt="Solution slide describing Imagin8V Park as an interactive empathy engine" />
+        <figcaption>Landing on the solution — an interactive "empathy engine."</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="imagin8v-brainstorming.jpg" alt="Photos of whiteboard brainstorming sessions with sticky notes and storyboards" />
+        <figcaption>A month of planned brainstorming turned into a full semester of iteration.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Phase 02</span>
+    <h2>Building the world.</h2>
+    <p>Phase 2 focused on the creation and development of the game. During this stage, our team explored game mechanics, developed mood boards, refined the narrative, designed characters, and began building interactive gameplay experiences.</p>
+    <div class="image-pair">
+      <figure class="section-image">
+        <img src="imagin8v-storyline.jpg" alt="Storyline slide: a dystopian future where the player journeys back in time through a portal, guided by Cherry and Barry" />
+        <figcaption>Cherry and Barry, our in-game guides, are loosely based on Sharon and Larry Adams.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="imagin8v-map.jpg" alt="Imagin8V Park world map blueprint" />
+        <figcaption>Early world-building — mapping the town's locations and mechanics.</figcaption>
+      </figure>
+    </div>
+    <div class="image-pair" style="margin-top:24px;">
+      <figure class="section-image">
+        <img src="imagin8v-design-assets.jpg" alt="Design assets: houses, storefronts, a community hub, and a street scene" />
+        <figcaption>Building out the visual world, one asset at a time.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="imagin8v-characters-guides.jpg" alt="Character design for Barry, Cherry, and Terry, the game's main guides" />
+        <figcaption>Designing Barry, Cherry, and Terry — our players' guides through the story.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="imagin8v-characters-npc.jpg" alt="Character design for NPCs Peach, Granny Smith, and Remi" />
+        <figcaption>Rounding out the neighborhood with NPCs — Peach, Granny Smith, and Remi.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="imagin8v-lofi-taskflow.jpg" alt="Low-fidelity wireframes and a task flow diagram mapping dialogue branches" />
+        <figcaption>Mapping task flows and early wireframes before locking in the mechanics.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Prototype</span>
+    <h2>Low-fidelity prototype.</h2>
+    <p>Approaching the end of Phase 2, core design elements were established, the narrative was fully developed, and a low-fidelity prototype of the game was created — setting up the next step: a high-fidelity prototype.</p>
+    <div class="image-trio">
+      <figure class="section-image">
+        <img src="imagin8v-lofi-sketch.jpg" alt="Rough sketch wireframe of houses, trees, and Next Day / Back navigation" />
+        <figcaption>Early sketches — laying out navigation and scene structure.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="imagin8v-lofi-houses.jpg" alt="Placeholder house shapes blocking out the scene before final art" />
+        <figcaption>Blocking out buildings with placeholder shapes before final art.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="imagin8v-lofi-characters.jpg" alt="Character art dropped into a bare layout with placeholder buttons" />
+        <figcaption>Testing character art against plain, placeholder UI.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Refinement</span>
+    <h2>High-fidelity design.</h2>
+    <p>After completing the low-fidelity prototype, our team transitioned into full design production, shifting focus from structure and functionality to visual refinement and user experience. We iterated on layout, typography, color systems, and interactive elements to ensure the interface was both aesthetically cohesive and intuitive.</p>
+    <p>Throughout this phase, we incorporated feedback, resolved usability issues, and paid close attention to detail. The result: a high-fidelity prototype that accurately represents the intended user experience and is fully prepared for usability testing.</p>
+    <div class="image-pair">
+      <figure class="section-image">
+        <img src="imagin8v-dialogue.jpg" alt="Imagin8V Park gameplay dialogue screen" />
+        <figcaption>Branching dialogue — deciding whether to buy the plot of land.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="imagin8v-granny.jpg" alt="Granny Smith character asking what the player wants to see in their community" />
+        <figcaption>Granny Smith — reflecting real community voices back into the story.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Results</span>
+    <h2>Final results &amp; testing.</h2>
+    <p>After completing Stage 1 of the game, our team showcased our demo at StartingBlock Madison — presenting our work in a real-world setting and engaging directly with a diverse audience.</p>
+    <p>Testing with a live audience gave us deeper insight into user behavior, engagement, and overall experience, which is now shaping the next iteration of the game.</p>
+    <figure class="section-image">
+      <img src="imagin8v-team-demo.jpg" alt="Team presenting Imagin8V Park at StartingBlock Madison" />
+      <figcaption>Our team presenting the demo at StartingBlock Madison.</figcaption>
+    </figure>
+  </section>
+
+  <div class="case-cta">
+    <h2>See it in action.</h2>
+    <div class="cta-actions">
+      <a href="index.html#work" class="btn btn-ghost">← Back to all work</a>
+      <a href="https://www.figma.com/proto/77ONhTV07mksJaPSzD5hJn/Imagin8V-Park-Prototype?node-id=1-9&starting-point-node-id=1%3A9&t=YgddTNh4y3gsaFfY-1" target="_blank" rel="noopener" class="btn btn-primary">Try the interactive prototype →</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">© 2026 Kyle Vang. Designed &amp; built by hand.</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  <img id="lightboxImg" src="" alt="" />
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  document.querySelectorAll('.section-image img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('show');
+    });
+  });
+
+  function closeLightbox(){
+    lightbox.classList.remove('show');
+  }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => {
+    if(e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') closeLightbox();
+  });
+</script>
+
+</body>
+</html>

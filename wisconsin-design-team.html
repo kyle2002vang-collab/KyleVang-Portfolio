@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wisconsin Design Team — Projects — Kyle Vang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0e0d0c;
+    --bg-alt: #151311;
+    --surface: #1b1815;
+    --border: #2d2822;
+    --text: #f4efe6;
+    --text-dim: #a89f92;
+    --text-faint: #6b6459;
+    --accent: #ff6a3d;
+    --accent-2: #ffcf6b;
+    --accent-grad: linear-gradient(135deg, #ff6a3d 0%, #ffcf6b 100%);
+    --radius: 18px;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior: smooth; }
+  body{ background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; overflow-x: hidden; }
+  body::before{
+    content:''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.6;
+  }
+  .glow{
+    position: fixed; top: -25%; left: 50%; transform: translateX(-50%);
+    width: 1000px; height: 750px;
+    background: radial-gradient(circle, rgba(255,106,61,0.14) 0%, rgba(255,207,107,0.05) 40%, transparent 70%);
+    filter: blur(70px); pointer-events: none; z-index: 0;
+  }
+  .wrap{ max-width: 880px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+  a{ color: inherit; text-decoration: none; }
+  .kicker{ font-size: 13px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); font-weight: 600; margin-bottom: 14px; }
+
+  nav{ position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px); background: rgba(14,13,12,0.72); border-bottom: 1px solid var(--border); }
+  nav .wrap{ max-width: 1180px; display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .logo{ font-family: var(--serif); font-weight: 500; font-size: 19px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
+  .logo .dot{ width: 8px; height: 8px; border-radius: 50%; background: var(--accent-grad); box-shadow: 0 0 12px rgba(255,106,61,0.7); }
+  .back-link{ font-size: 14px; color: var(--text-dim); display: flex; align-items: center; gap: 8px; transition: color .2s ease; }
+  .back-link:hover{ color: var(--accent); }
+
+  /* ---------- Case hero ---------- */
+  .case-hero{ padding: 90px 0 60px; }
+  .case-hero h1{ font-family: var(--serif); font-weight: 500; font-size: clamp(38px, 6vw, 64px); letter-spacing: -0.02em; line-height: 1.05; max-width: 760px; }
+  .case-hero .sub{ margin-top: 24px; font-size: 18px; color: var(--text-dim); max-width: 620px; }
+  .meta-row{ display: flex; gap: 40px; flex-wrap: wrap; margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .meta-item h4{ font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-faint); margin-bottom: 8px; }
+  .meta-item p{ font-size: 15px; font-weight: 500; }
+  .meta-tags{ display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag-pill{ font-size: 11px; text-transform: uppercase; letter-spacing: .06em; padding: 5px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--text-dim); }
+
+  .hero-image{ margin: 56px 0 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 30px 70px rgba(0,0,0,0.5); }
+  .hero-image img{ width: 100%; display: block; }
+
+  /* ---------- Content sections ---------- */
+  section.case-section{ padding: 64px 0; border-top: 1px solid var(--border); }
+  section.case-section:first-of-type{ border-top: none; }
+  .case-section .num{ font-family: var(--serif); font-style: italic; color: var(--text-faint); font-size: 20px; margin-bottom: 14px; display: block; }
+  .case-section h2{ font-family: var(--serif); font-weight: 500; font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -0.01em; margin-bottom: 20px; max-width: 640px; }
+  .case-section p{ color: var(--text-dim); font-size: 16px; max-width: 640px; }
+  .case-section p + p{ margin-top: 16px; }
+  .section-image{ margin-top: 36px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
+  .section-image img{ width: 100%; display: block; transition: transform .35s ease; cursor: zoom-in; }
+  .section-image:hover img{ transform: scale(1.05); }
+
+  /* ---------- Lightbox ---------- */
+  .lightbox{
+    position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center;
+    padding: 40px; background: rgba(10,9,8,0.9); backdrop-filter: blur(6px);
+    opacity: 0; pointer-events: none; transition: opacity .25s ease;
+  }
+  .lightbox.show{ opacity: 1; pointer-events: auto; }
+  .lightbox img{
+    max-width: 100%; max-height: 100%; border-radius: 12px; box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    transform: scale(.96); transition: transform .25s ease;
+  }
+  .lightbox.show img{ transform: scale(1); }
+  .lightbox-close{
+    position: absolute; top: 28px; right: 32px; width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
+    font-size: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: all .2s ease;
+  }
+  .lightbox-close:hover{ border-color: var(--accent); color: var(--accent); }
+  .section-image figcaption{ font-size: 13px; color: var(--text-faint); padding: 14px 20px; background: var(--surface); border-top: 1px solid var(--border); }
+  .image-pair{ display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .image-pair .section-image{ margin-top: 0; }
+  .image-trio{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px; }
+  .image-trio .section-image{ margin-top: 0; }
+  .image-trio .section-image img{ background: #fff; }
+  @media (max-width: 640px){ .image-pair{ grid-template-columns: 1fr; } .image-trio{ grid-template-columns: 1fr; } }
+  @media (min-width: 641px) and (max-width: 900px){ .image-trio{ grid-template-columns: 1fr 1fr; } }
+
+  /* ---------- CTA ---------- */
+  .case-cta{
+    margin: 40px 0 100px; padding: 64px 48px; text-align: center;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 24px; position: relative; overflow: hidden;
+  }
+  .case-cta::before{ content:''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(255,106,61,0.12), transparent 60%); pointer-events: none; }
+  .case-cta h2{ font-family: var(--serif); font-weight: 500; font-size: clamp(26px, 4.4vw, 38px); margin-bottom: 28px; position: relative; }
+  .cta-actions{ display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .btn{ display: inline-flex; align-items: center; gap: 8px; padding: 15px 28px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s ease; }
+  .btn-primary{ background: var(--accent-grad); color: #16110b; }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,106,61,0.28); }
+  .btn-ghost{ border: 1px solid var(--border); color: var(--text); }
+  .btn-ghost:hover{ border-color: var(--text-dim); transform: translateY(-2px); }
+
+  footer.site-footer{ padding: 40px 0 60px; text-align: center; color: var(--text-faint); font-size: 13px; }
+
+  @media (max-width: 640px){
+    .case-cta{ padding: 48px 24px; }
+    .meta-row{ gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="logo"><span class="dot"></span>Kyle Vang</a>
+    <a href="index.html#work" class="back-link">← Back to all work</a>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="wrap">
+    <div class="kicker">Projects</div>
+    <h1>Wisconsin Design Team — a campus brand's first app</h1>
+    <p class="sub">A semester-long UX project reimagining a Madison clothing brand's confusing website into an intuitive, community-first shopping app.</p>
+
+    <div class="meta-row">
+      <div class="meta-item"><h4>Role</h4><p>UX Designer</p></div>
+      <div class="meta-item"><h4>Context</h4><p>School project, September 2024–December 2024</p></div>
+      <div class="meta-item"><h4>Focus</h4>
+        <div class="meta-tags">
+          <span class="tag-pill">Research</span>
+          <span class="tag-pill">UI Design</span>
+          <span class="tag-pill">Prototyping</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="wdt-cover.jpg" alt="Wisconsin Design Team clothing app cover, shown on two iPhone mockups" />
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="case-section">
+    <span class="num">Overview</span>
+    <h2>A brand with no digital home.</h2>
+    <p>The Wisconsin Design Team's clothing brand merges innovative fashion with local flair, producing unique, high-quality apparel that reflects Wisconsin's culture and campus pride. With no existing app, their digital presence was limited — which is what inspired my team to design a prototype app to enhance accessibility and customer engagement.</p>
+    <p>The app aims to streamline the online shopping experience, showcase new designs, and build a stronger connection with their audience — positioning the brand for broader outreach and modernized growth.</p>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Timeline</span>
+    <h2>13 weeks, start to finish.</h2>
+    <p>The project moved from research to a finished high-fidelity prototype over a single semester: weeks of research, sketches and wireframes, a full prototype, and a final pass of UI polish.</p>
+    <figure class="section-image">
+      <img src="wdt-duration.jpg" alt="Project timeline: weeks 1-13 covering research, sketches, prototype, and UI/UX finishing touches" />
+      <figcaption>Weeks 1–13: research, sketches and wireframes, prototype, and final UI/UX polish.</figcaption>
+    </figure>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Problem</span>
+    <h2>Confusing, and nowhere to shop from your phone.</h2>
+    <p>The Wisconsin Design Team's existing website made it difficult for customers to identify the brand's core purpose. Navigation was confusing, the aesthetic needed work, and — most importantly — there was no mobile app at all.</p>
+    <figure class="section-image">
+      <img src="wdt-problem.jpg" alt="Problem statement: difficult to identify core purpose, confusing navigation, no mobile app" />
+      <figcaption>The existing site struggled with organization, aesthetics, and navigation — and had no app.</figcaption>
+    </figure>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Solution</span>
+    <h2>A redesigned, community-first app.</h2>
+    <p>We proposed a redesigned platform that's intuitive, visually appealing, and well-organized — one that prioritizes user-friendly navigation, cohesive aesthetics, and clear communication of the brand's purpose: fostering community and celebrating student life.</p>
+    <figure class="section-image">
+      <img src="wdt-solution.jpg" alt="Proposed solution: create an app, highlight community traits, reorganize navigation, update aesthetics" />
+      <figcaption>Creating an app, reorganizing navigation, and updating the aesthetic from the ground up.</figcaption>
+    </figure>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Research</span>
+    <h2>Understanding a campus community.</h2>
+    <p>My research aimed to design an app that caters to a diverse range of customers while ensuring a seamless, intuitive navigation experience for everyone — from current students to alumni still buying gear years later.</p>
+    <div class="image-pair">
+      <figure class="section-image">
+        <img src="wdt-research.jpg" alt="User research questions: who are the customers, what makes WDT stand out, what would make the app more enjoyable" />
+        <figcaption>Key questions: who the customers are, what makes WDT stand out, and what would make the app more enjoyable.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="wdt-personas.jpg" alt="Four user personas: Ben, Sarah, a new Badger parent, and a millennial alum" />
+        <figcaption>Four personas — from a first-year student to a millennial alum — grounded the design in real customer needs.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Structure</span>
+    <h2>Mapping the experience.</h2>
+    <p>Before any screens were designed, I mapped out the app's information architecture and the core user flows — how someone browses and buys merchandise from open to checkout.</p>
+    <div class="image-pair">
+      <figure class="section-image">
+        <img src="wdt-ia.jpg" alt="Information architecture map: Home, Shop, Cart, Account, Connect, About" />
+        <figcaption>Information architecture — Shop, Cart, Account, Connect, and About.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="wdt-flow.jpg" alt="Flowcharts for checkout and item selection" />
+        <figcaption>Flowcharts for checkout and item selection kept the shopping journey simple.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Design System</span>
+    <h2>A cohesive visual identity.</h2>
+    <p>The design system pairs a 60-30-10 color rule with the WDT crest, Inter for body text, and Inknut Antique for headings — reinforcing the brand's collegiate, community-first character across every screen.</p>
+    <div class="image-pair">
+      <figure class="section-image">
+        <img src="wdt-design-system-1.jpg" alt="Design system: 60-30-10 color rule and body typography" />
+        <figcaption>Color ratios and body type, built around the WDT crest.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="wdt-design-system-2.jpg" alt="Design system part 2: heading typography and component styles" />
+        <figcaption>Headline type and component styles for shared moments, like rewards.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">UI</span>
+    <h2>High-fidelity screens.</h2>
+    <p>The final app design showcases student models prominently on the home screen, streamlines payment with saved methods, and rounds out the experience with browsing, cart, account, and rewards flows.</p>
+    <figure class="section-image">
+      <img src="wdt-ui-1.jpg" alt="Home screen featuring a student model and Get Involved menu" />
+      <figcaption>Home screen — built around community and student life.</figcaption>
+    </figure>
+    <figure class="section-image">
+      <img src="wdt-ui-2.jpg" alt="Second home screen state and the payment screen" />
+      <figcaption>A second home screen state, plus a streamlined payment flow.</figcaption>
+    </figure>
+    <figure class="section-image">
+      <img src="wdt-ui-3.jpg" alt="Shop, product category, and cart screens" />
+      <figcaption>Shop, product category, and cart screens.</figcaption>
+    </figure>
+    <figure class="section-image">
+      <img src="wdt-ui-4.jpg" alt="Product detail, order confirmation, store locator, and rewards screens" />
+      <figcaption>Product detail, order confirmation, store locator, and rewards.</figcaption>
+    </figure>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Conclusion</span>
+    <h2>What I learned.</h2>
+    <p>This project reinforced how essential thorough user research is to identifying real pain points, and deepened my understanding of building intuitive, visually cohesive interfaces for a diverse audience. Balancing creativity with usability — and iterating until both goals were met — was the throughline of the whole semester.</p>
+    <figure class="section-image">
+      <img src="wdt-learnings.jpg" alt="Conclusion slide on research, iteration, and balancing creativity with usability" />
+      <figcaption>Closing thoughts on research, iteration, and balancing creativity with usability.</figcaption>
+    </figure>
+  </section>
+
+  <div class="case-cta">
+    <h2>See it in action.</h2>
+    <div class="cta-actions">
+      <a href="index.html#work" class="btn btn-ghost">← Back to all work</a>
+      <a href="https://www.figma.com/proto/G6noiwwiV5jPPtmTTw8XW5/WDT-Wireframes?node-id=310-1304&starting-point-node-id=310%3A1304&t=VPaTcgRPxPZRW7fs-1" target="_blank" rel="noopener" class="btn btn-primary">Try the interactive prototype →</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">© 2026 Kyle Vang. Designed &amp; built by hand.</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  <img id="lightboxImg" src="" alt="" />
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  document.querySelectorAll('.section-image img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('show');
+    });
+  });
+
+  function closeLightbox(){
+    lightbox.classList.remove('show');
+  }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => {
+    if(e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') closeLightbox();
+  });
+</script>
+
+</body>
+</html>
