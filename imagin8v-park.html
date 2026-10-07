@@ -120,6 +120,16 @@
     .case-cta{ padding: 48px 24px; }
     .meta-row{ gap: 28px; }
   }
+/* ===== Unified type scale ===== */
+:root{ --fs-label:12px; --fs-small:14px; --fs-body:16px; --fs-lead:18px; --fs-h2:clamp(26px,4vw,36px); --fs-h1:clamp(38px,6vw,64px); --track-label:0.1em; }
+body{ font-size:var(--fs-body); }
+.case-hero h1{ font-size:var(--fs-h1); font-weight:500; letter-spacing:-0.02em; line-height:1.05; }
+.case-section h2,.case-cta h2{ font-size:var(--fs-h2); font-weight:500; letter-spacing:-0.01em; line-height:1.2; }
+.kicker,.meta-item h4,.tag-pill{ font-family:var(--sans); font-size:var(--fs-label); font-weight:600; letter-spacing:var(--track-label); text-transform:uppercase; }
+.case-hero .sub{ font-size:var(--fs-lead); }
+.case-section p,.meta-item p,.btn{ font-size:var(--fs-body); }
+.back-link,.section-image figcaption,footer.site-footer{ font-size:var(--fs-small); }
+button{ font-family:inherit; }
 </style>
 </head>
 <body>
