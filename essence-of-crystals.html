@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Essence of Crystals — Projects — Kyle Vang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0e0d0c;
+    --bg-alt: #151311;
+    --surface: #1b1815;
+    --border: #2d2822;
+    --text: #f4efe6;
+    --text-dim: #a89f92;
+    --text-faint: #6b6459;
+    --accent: #ff6a3d;
+    --accent-2: #ffcf6b;
+    --accent-grad: linear-gradient(135deg, #ff6a3d 0%, #ffcf6b 100%);
+    --radius: 18px;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior: smooth; }
+  body{ background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; overflow-x: hidden; }
+  body::before{
+    content:''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.6;
+  }
+  .glow{
+    position: fixed; top: -25%; left: 50%; transform: translateX(-50%);
+    width: 1000px; height: 750px;
+    background: radial-gradient(circle, rgba(255,106,61,0.14) 0%, rgba(255,207,107,0.05) 40%, transparent 70%);
+    filter: blur(70px); pointer-events: none; z-index: 0;
+  }
+  .wrap{ max-width: 880px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+  a{ color: inherit; text-decoration: none; }
+  .kicker{ font-size: 13px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); font-weight: 600; margin-bottom: 14px; }
+
+  nav{ position: sticky; top: 0; z-index: 50; backdrop-filter: blur(14px); background: rgba(14,13,12,0.72); border-bottom: 1px solid var(--border); }
+  nav .wrap{ max-width: 1180px; display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .logo{ font-family: var(--serif); font-weight: 500; font-size: 19px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
+  .logo .dot{ width: 8px; height: 8px; border-radius: 50%; background: var(--accent-grad); box-shadow: 0 0 12px rgba(255,106,61,0.7); }
+  .back-link{ font-size: 14px; color: var(--text-dim); display: flex; align-items: center; gap: 8px; transition: color .2s ease; }
+  .back-link:hover{ color: var(--accent); }
+
+  /* ---------- Case hero ---------- */
+  .case-hero{ padding: 90px 0 60px; }
+  .case-hero h1{ font-family: var(--serif); font-weight: 500; font-size: clamp(38px, 6vw, 64px); letter-spacing: -0.02em; line-height: 1.05; max-width: 760px; }
+  .case-hero .sub{ margin-top: 24px; font-size: 18px; color: var(--text-dim); max-width: 620px; }
+  .meta-row{ display: flex; gap: 40px; flex-wrap: wrap; margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .meta-item h4{ font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-faint); margin-bottom: 8px; }
+  .meta-item p{ font-size: 15px; font-weight: 500; }
+  .meta-tags{ display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag-pill{ font-size: 11px; text-transform: uppercase; letter-spacing: .06em; padding: 5px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--text-dim); }
+
+  .hero-image{ margin: 56px 0 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 30px 70px rgba(0,0,0,0.5); }
+  .hero-image img{ width: 100%; display: block; }
+
+  /* ---------- Content sections ---------- */
+  section.case-section{ padding: 64px 0; border-top: 1px solid var(--border); }
+  section.case-section:first-of-type{ border-top: none; }
+  .case-section .num{ font-family: var(--serif); font-style: italic; color: var(--text-faint); font-size: 20px; margin-bottom: 14px; display: block; }
+  .case-section h2{ font-family: var(--serif); font-weight: 500; font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -0.01em; margin-bottom: 20px; max-width: 640px; }
+  .case-section p{ color: var(--text-dim); font-size: 16px; max-width: 640px; }
+  .case-section p + p{ margin-top: 16px; }
+  .section-image{ margin-top: 36px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
+  .section-image img{ width: 100%; display: block; transition: transform .35s ease; cursor: zoom-in; }
+  .section-image:hover img{ transform: scale(1.05); }
+
+  /* ---------- Lightbox ---------- */
+  .lightbox{
+    position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center;
+    padding: 40px; background: rgba(10,9,8,0.9); backdrop-filter: blur(6px);
+    opacity: 0; pointer-events: none; transition: opacity .25s ease;
+  }
+  .lightbox.show{ opacity: 1; pointer-events: auto; }
+  .lightbox img{
+    max-width: 100%; max-height: 100%; border-radius: 12px; box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    transform: scale(.96); transition: transform .25s ease;
+  }
+  .lightbox.show img{ transform: scale(1); }
+  .lightbox-close{
+    position: absolute; top: 28px; right: 32px; width: 44px; height: 44px; border-radius: 50%;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
+    font-size: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: all .2s ease;
+  }
+  .lightbox-close:hover{ border-color: var(--accent); color: var(--accent); }
+  .section-image figcaption{ font-size: 13px; color: var(--text-faint); padding: 14px 20px; background: var(--surface); border-top: 1px solid var(--border); }
+  .image-pair{ display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .image-pair .section-image{ margin-top: 0; }
+  .image-trio{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px; }
+  .image-trio .section-image{ margin-top: 0; }
+  .image-trio .section-image img{ background: #fff; }
+  @media (max-width: 640px){ .image-pair{ grid-template-columns: 1fr; } .image-trio{ grid-template-columns: 1fr; } }
+  @media (min-width: 641px) and (max-width: 900px){ .image-trio{ grid-template-columns: 1fr 1fr; } }
+
+  /* ---------- CTA ---------- */
+  .case-cta{
+    margin: 40px 0 100px; padding: 64px 48px; text-align: center;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 24px; position: relative; overflow: hidden;
+  }
+  .case-cta::before{ content:''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(255,106,61,0.12), transparent 60%); pointer-events: none; }
+  .case-cta h2{ font-family: var(--serif); font-weight: 500; font-size: clamp(26px, 4.4vw, 38px); margin-bottom: 28px; position: relative; }
+  .cta-actions{ display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+  .btn{ display: inline-flex; align-items: center; gap: 8px; padding: 15px 28px; border-radius: 999px; font-size: 15px; font-weight: 600; transition: all .25s ease; }
+  .btn-primary{ background: var(--accent-grad); color: #16110b; }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,106,61,0.28); }
+  .btn-ghost{ border: 1px solid var(--border); color: var(--text); }
+  .btn-ghost:hover{ border-color: var(--text-dim); transform: translateY(-2px); }
+
+  footer.site-footer{ padding: 40px 0 60px; text-align: center; color: var(--text-faint); font-size: 13px; }
+
+  @media (max-width: 640px){
+    .case-cta{ padding: 48px 24px; }
+    .meta-row{ gap: 28px; }
+  }
+/* ===== Unified type scale ===== */
+:root{ --fs-label:12px; --fs-small:14px; --fs-body:16px; --fs-lead:18px; --fs-h2:clamp(26px,4vw,36px); --fs-h1:clamp(38px,6vw,64px); --track-label:0.1em; }
+body{ font-size:var(--fs-body); }
+.case-hero h1{ font-size:var(--fs-h1); font-weight:500; letter-spacing:-0.02em; line-height:1.05; }
+.case-section h2,.case-cta h2{ font-size:var(--fs-h2); font-weight:500; letter-spacing:-0.01em; line-height:1.2; }
+.kicker,.meta-item h4,.tag-pill{ font-family:var(--sans); font-size:var(--fs-label); font-weight:600; letter-spacing:var(--track-label); text-transform:uppercase; }
+.case-hero .sub{ font-size:var(--fs-lead); }
+.case-section p,.meta-item p,.btn{ font-size:var(--fs-body); }
+.back-link,.section-image figcaption,footer.site-footer{ font-size:var(--fs-small); }
+button{ font-family:inherit; }
+.image-pair,.image-trio{ align-items:start; }
+</style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="logo"><span class="dot"></span>Kyle Vang</a>
+    <a href="index.html#work" class="back-link">← Back to all work</a>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="wrap">
+    <div class="kicker">Projects</div>
+    <h1>Essence of Crystals, a calmer way to shop and learn</h1>
+    <p class="sub">A website redesign for a small crystal and holistic goods shop, built around clear education, easy browsing, and a checkout that stays out of the way.</p>
+
+    <div class="meta-row">
+      <div class="meta-item"><h4>Role</h4><p>UX/UI Designer</p></div>
+      <div class="meta-item"><h4>Context</h4><p>Freelance client project, KVStudios</p></div>
+      <div class="meta-item"><h4>Tools</h4><p>Figma</p></div>
+      <div class="meta-item"><h4>Focus</h4>
+        <div class="meta-tags">
+          <span class="tag-pill">Research</span>
+          <span class="tag-pill">Wireframing</span>
+          <span class="tag-pill">UI Design</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="eoc-cover.jpg" alt="Essence of Crystals home page design with a hero image of clear and smoky quartz crystals" />
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="case-section">
+    <span class="num">Overview</span>
+    <h2>A shop built on healing, with a site that did not show it.</h2>
+    <p>The Essence of Crystals sells crystals, jewelry, and holistic tools, and shares what it knows through a community of customers, supporters, and a podcast. The goal was a website that feels as calm and trustworthy as the products, and that helps people learn about crystals as easily as they can buy them.</p>
+    <p>I managed the project from start to finish. I researched the competition, mapped how different customers move through a crystal shop, then designed the experience from low-fidelity wireframes to a finished, high-fidelity design in Figma.</p>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Competitors</span>
+    <h2>Three shops, three different problems.</h2>
+    <p>I compared Crystal Age, Energy Muse, and Crystal Magic on their mission, audience, strengths, weaknesses, and four key features: education, video, accounts, and product previews.</p>
+    <p>Each one fell short in a different way. Crystal Age had a huge range but felt overloaded and hard to trust. Energy Muse offered the most education, but its pages were text heavy and did not match its look. Crystal Magic had beautiful photography but little to teach. That left room for a site that is calm, uncluttered, and education-first.</p>
+    <figure class="section-image">
+      <img src="eoc-competitive.jpg" alt="Competitive analysis table comparing Crystal Age, Energy Muse, and Crystal Magic across mission, target market, strengths, weaknesses, and features" />
+      <figcaption>Competitive analysis: Crystal Age, Energy Muse, and Crystal Magic compared side by side.</figcaption>
+    </figure>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Research</span>
+    <h2>Three customers, three journeys.</h2>
+    <p>To understand how different people shop for crystals, I built a journey map for three customers: a 25-year-old college student curious about holistic healing, a 40-year-old corporate worker looking for calming products after a stressful day, and a 60-year-old holistic expert reviewing products for trustworthiness.</p>
+    <p>Across all three journeys, the same frustrations kept showing up: too much information at once, unreliable sources, no way to preview products on a person, and little reason to come back, like accounts or rewards. Each map ends with opportunities that fed straight into the design.</p>
+    <figure class="section-image">
+      <img src="eoc-journey-1.jpg" alt="User journey map for a 25-year-old college student who wants to learn about holistic healing and buy the most fitting product" />
+      <figcaption>Journey map 1: a college student exploring holistic healing for the first time.</figcaption>
+    </figure>
+    <figure class="section-image">
+      <img src="eoc-journey-2.jpg" alt="User journey map for a 40-year-old corporate worker looking for calming products" />
+      <figcaption>Journey map 2: a corporate worker who wants to unwind with calming products.</figcaption>
+    </figure>
+    <figure class="section-image">
+      <img src="eoc-journey-3.jpg" alt="User journey map for a 60-year-old holistic expert reviewing products" />
+      <figcaption>Journey map 3: a holistic expert checking whether the shop can be trusted.</figcaption>
+    </figure>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Wireframes</span>
+    <h2>Getting the structure right first.</h2>
+    <p>Before choosing colors or photos, I sketched the core pages in grayscale: the home page, the shop, and checkout, plus the add-to-bag and thank-you moments. Working without visual style let me focus on what customers see first and how few steps it takes to buy.</p>
+    <div class="image-trio">
+      <figure class="section-image">
+        <img src="eoc-lowfi-home.jpg" alt="Low-fidelity wireframe of the home page" />
+        <figcaption>Home</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="eoc-lowfi-shop.jpg" alt="Low-fidelity wireframe of the shop page with a category list and product grid" />
+        <figcaption>Shop</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="eoc-lowfi-checkout.jpg" alt="Low-fidelity wireframe of the checkout page" />
+        <figcaption>Checkout</figcaption>
+      </figure>
+    </div>
+    <div class="image-pair">
+      <figure class="section-image">
+        <img src="eoc-lowfi-bag.jpg" alt="Low-fidelity wireframe of the add to bag pop-up" />
+        <figcaption>Add to bag pop-up.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="eoc-lowfi-thanks.jpg" alt="Low-fidelity wireframe of the thank you pop-up after checkout" />
+        <figcaption>Thank-you message after checkout.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Design</span>
+    <h2>Soft, warm, and easy to read.</h2>
+    <p>The visual style uses a warm cream background, soft lavender bands, and muted tan buttons, with natural photography of crystals, candles, and herbs. Rounded cards and generous spacing keep every page uncluttered, which was the biggest gap in the competitor sites.</p>
+    <p>The home page opens with a single hero message, then three clear paths: New Arrivals, Best Sellers, and a Holistic Guide. A quiz banner near the bottom helps visitors who are not sure what they need.</p>
+    <div class="image-pair">
+      <figure class="section-image">
+        <img src="eoc-ui-home.jpg" alt="High-fidelity home page with a crystal hero image, three Explore cards, a mission statement, and a Take Your Quiz banner" />
+        <figcaption>Home: one clear message and three paths to explore.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="eoc-ui-learn.jpg" alt="High-fidelity Learn page with six topic cards: General, Practices, Foods, Mind, Tools, and Crystals" />
+        <figcaption>Learn: six simple topics instead of one long wall of text.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Education</span>
+    <h2>Learning made easy to browse.</h2>
+    <p>Every journey map pointed to the same fix: condense the information and add ways to learn. The Learn page breaks everything into six topics with photography, so customers can pick what interests them instead of reading everything at once. The About page tells the founders' story, which helps the shop feel real and reliable.</p>
+    <figure class="section-image">
+      <img src="eoc-ui-about.jpg" alt="High-fidelity About page with the story of the two founders and a photo of them sitting together" />
+      <figcaption>About: the founders' story builds trust before anyone buys.</figcaption>
+    </figure>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Shopping</span>
+    <h2>Preview first, then buy.</h2>
+    <p>The shop uses a category list and a clean product grid with a heart to save favorites. Selecting a product opens a quick preview with a short description and quantity, so customers do not have to leave the page to decide. Adding to the bag confirms the choice and offers View Bag or Keep Shopping, plus recommendations for what to look at next.</p>
+    <div class="image-trio">
+      <figure class="section-image">
+        <img src="eoc-ui-shop.jpg" alt="High-fidelity shop page with a category list, product grid, and recommended items" />
+        <figcaption>Shop: categories and a calm product grid.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="eoc-ui-shop-preview.jpg" alt="High-fidelity shop page with a quick preview pop-up for a rose quartz piece" />
+        <figcaption>Quick preview with description and quantity.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="eoc-ui-shop-added.jpg" alt="High-fidelity shop page with an Added to Bag pop-up offering View Bag and Keep Shopping" />
+        <figcaption>Added to bag, with View Bag or Keep Shopping.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Checkout</span>
+    <h2>A short path to the finish.</h2>
+    <p>Checkout keeps the product, the order summary, and the accepted payment methods on one screen. The summary shows subtotal, shipping, and tax up front, so there are no surprises, and recommended items sit below for one last look. A short thank-you message closes the loop.</p>
+    <div class="image-pair">
+      <figure class="section-image">
+        <img src="eoc-ui-checkout.jpg" alt="High-fidelity checkout page with an order summary and accepted payment methods" />
+        <figcaption>Order summary with shipping and tax shown upfront.</figcaption>
+      </figure>
+      <figure class="section-image">
+        <img src="eoc-ui-thanks.jpg" alt="High-fidelity thank you pop-up shown over the checkout page" />
+        <figcaption>A simple thank-you to finish the purchase.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <span class="num">Conclusion</span>
+    <h2>What I learned.</h2>
+    <p>This project showed me how much a competitor review and a few simple journey maps can shape a design before any screens exist. Seeing the same frustrations across very different customers made it easier to decide what to simplify, what to teach, and where to build trust. It also gave me practice managing a client project from first research through finished screens.</p>
+  </section>
+
+  <div class="case-cta">
+    <h2>Want to see more work?</h2>
+    <div class="cta-actions">
+      <a href="index.html#work" class="btn btn-ghost">← Back to all work</a>
+      <a href="index.html#contact" class="btn btn-primary">Get in touch →</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">© 2026 Kyle Vang. Designed &amp; built with the help of AI.</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">✕</button>
+  <img id="lightboxImg" src="" alt="" />
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  document.querySelectorAll('.section-image img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('show');
+    });
+  });
+
+  function closeLightbox(){
+    lightbox.classList.remove('show');
+  }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => {
+    if(e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') closeLightbox();
+  });
+</script>
+
+</body>
+</html>
