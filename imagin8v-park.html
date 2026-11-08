@@ -130,6 +130,10 @@ body{ font-size:var(--fs-body); }
 .case-section p,.meta-item p,.btn{ font-size:var(--fs-body); }
 .back-link,.section-image figcaption,footer.site-footer{ font-size:var(--fs-small); }
 button{ font-family:inherit; }
+.stat-row{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; margin:32px 0; }
+.stat-card{ border:1px solid var(--border); border-radius:var(--radius); padding:24px; background:rgba(255,255,255,0.02); }
+.stat-card b{ display:block; font-family:var(--serif); font-weight:500; font-size:clamp(30px,4.4vw,44px); line-height:1.1; background:var(--accent-grad); -webkit-background-clip:text; background-clip:text; color:transparent; margin-bottom:10px; }
+.stat-card span{ color:var(--text-dim); font-size:15px; line-height:1.5; display:block; }
 </style>
 </head>
 <body>
@@ -190,15 +194,16 @@ button{ font-family:inherit; }
   <section class="case-section">
     <span class="num">Phase 01</span>
     <h2>Research and discovery.</h2>
-    <p>In the first phase of our project, our team conducted extensive research to better understand the potential impact of the game, identify user needs, and generate ideas through collaborative brainstorming sessions.</p>
+    <p>In the first phase of our project, our team worked directly with Adams Garden Park partners to understand the community and its needs. We conducted in-person, phone, and Zoom interviews, live tours, and observations, then generated ideas through collaborative brainstorming sessions.</p>
+    <p>Our research suggested a game could engage younger students, which shaped our decision to build a click-and-play game that simplifies the housing crisis.</p>
     <div class="image-trio">
       <figure class="section-image">
         <img src="imagin8v-problem.jpg" alt="Problem slide: the housing crisis is hard for younger generations to access or engage with" />
         <figcaption>Naming and identifying the problem.</figcaption>
       </figure>
       <figure class="section-image">
-        <img src="imagin8v-research.jpg" alt="Research slide showing digital education games improve student learning engagement" />
-        <figcaption>Research validated that a game could bridge imagination and action.</figcaption>
+        <img src="imagin8v-research.jpg" alt="Research slide on how digital education games can support student learning engagement" />
+        <figcaption>Research suggested a game could bridge imagination and action.</figcaption>
       </figure>
       <figure class="section-image">
         <img src="imagin8v-reframing.jpg" alt="Reframing the problem into the question: how might we give high schoolers a meaningful entry point into community transformation" />
@@ -293,8 +298,13 @@ button{ font-family:inherit; }
   <section class="case-section">
     <span class="num">Results</span>
     <h2>Final results &amp; testing.</h2>
-    <p>After completing Stage 1 of the game, our team showcased our demo at StartingBlock Madison. Presenting our work in a real-world setting and engaging directly with a diverse audience.</p>
+    <p>After completing Stage 1 of the game, our team showcased our demo at StartingBlock Madison to community members and program stakeholders, presenting our work in a real-world setting and engaging directly with a diverse audience.</p>
     <p>Testing with a live audience gave us deeper insight into user behavior, engagement, and overall experience.</p>
+    <div class="stat-row">
+      <div class="stat-card"><b>20 of 36</b><span>community members and stakeholders (56%) reported learning something new about the housing crisis</span></div>
+      <div class="stat-card"><b>More complex</b><span>scenarios better engaged players, which guided what we iterated on next</span></div>
+    </div>
+    <p>Our community partner, Adams Garden Park, commended the work and encouraged us to continue it.</p>
     <figure class="section-image">
       <img src="imagin8v-team-demo.jpg" alt="Team presenting Imagin8V Park at StartingBlock Madison" />
       <figcaption>Our team presenting the demo at StartingBlock Madison.</figcaption>
